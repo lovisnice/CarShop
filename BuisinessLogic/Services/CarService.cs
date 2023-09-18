@@ -80,8 +80,12 @@ namespace BuisinessLogic.Services
                 string imagePath = _fileService.UpdateProductImage(productDto.ImagePath, productDto.Image).Result;
                 productDto.ImagePath = imagePath;
 
+                
+
+
                 var product = _mapper.Map<Car>(productDto);
                 _productRepo.Update(product);
+                
                 _productRepo.Save();
             }
         }

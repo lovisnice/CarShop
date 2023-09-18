@@ -11,6 +11,7 @@ using BuisinessLogic.Interfaces;
 using BuisinessLogic.Services;
 using DataAccsess;
 using CarShop.Services;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +21,11 @@ builder.Services.AddDefaultIdentity<CustomUser>(options => options.SignIn.Requir
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<CarShopContext>();
 
-builder.Services.AddDbContext<CarShopContext>(options => options.UseSqlServer(connection));
+builder.Services.AddDbContext<CarShopContext>(options =>
+{
+    options.UseSqlServer(connection);
+    options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking); //for 
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

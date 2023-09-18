@@ -21,6 +21,7 @@ namespace BusinessLogic.Helpers
 
             CreateMap<Car, EditCarDto>()
           .ForMember(productDto => productDto.Image, opt => opt.Ignore());
+            //.ForMember(productDto => productDto.Id, opt => opt.Ignore());
             //map ProductDto=>Product
             CreateMap<EditCarDto, Car>();
         }
