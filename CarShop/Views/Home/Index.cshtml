@@ -1,0 +1,87 @@
+﻿@model List<BuisinessLogic.DTOs.CarDto>
+@{
+    ViewData["Title"] = "Index";
+}
+@{
+    string productImagePlaceholder = @"https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-15.png";
+}
+
+    @if (User.IsInRole("Admin"))
+    {
+        <p>
+            <a asp-controller="Cars" asp-action="Create">Create New</a>
+        </p>
+    }
+        <!-- Category Sort Button -->
+<p>
+    <a asp-controller="Home" asp-action="Index" asp-route-sort="category">Sort by Category</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Image
+            </th>
+            <th>
+                Manufacturer
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                Color
+            </th>
+            <th>
+                Year
+            </th>
+            <th>
+                Price / hour
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="@(item.ImagePath??productImagePlaceholder)" class="card-img-top w-25" alt="...">
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Manufacturer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-controller="Cars" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+
+                        <a asp-controller="Cars" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    }
+                    <a asp-controller="Cart" asp-action="Add" asp-route-id="@item.Id">Add</a>
+                    <a asp-controller="Cars" asp-action="Details" asp-route-id="@item.Id">Details</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

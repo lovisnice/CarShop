@@ -1,0 +1,27 @@
+﻿@using CarShop.Helper;
+@model CartViewModel
+@{
+    string productImagePlaceholder = @"https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-15.png";
+}
+<div class="col-sm-4">
+    <div class="card">
+        @*<div class="product-card-img">
+            <img src="@(Model.car.ImagePath??productImagePlaceholder)" class="card-img-top" alt="...">
+        </div>*@
+        <div class="card-body">
+            <h5 class="card-title">@Model.</h5>
+            <p class="card-text">@Model.car.Color</p>
+            <p class="fw-bold">Price <span class="badge bg-primary">@Model.car.Price</span></p>
+            <a asp-controller="Product" asp-action="Details" asp-route-id=@Model.car.Id asp-route-returnUrl="@Context.Request.Path" class="btn btn-dark">Details</a>
+            @if (!Model.IsInCart)
+            {
+                <a asp-controller="Cart" asp-action="Add" asp-route-id=@Model.car.Id class="btn btn-danger">Add To Cart</a>
+            }
+            else
+            {
+                <a asp-controller="Cart" asp-action="Remove" asp-route-id=@Model.car.Id class="btn btn-secondary">Delete From Cart</a>
+            }
+
+        </div>
+    </div>
+</div>

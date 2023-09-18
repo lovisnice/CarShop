@@ -1,0 +1,57 @@
+﻿@model List<BuisinessLogic.DTOs.CarDto>
+
+@{
+    string productImagePlaceholder = @"https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-15.png";
+}
+
+<div class="container">
+    @if (Model.Any())
+    {
+        <h3>Count product: @Model.Count()</h3>
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Manufacturer</th>
+                        <th scope="col">Color</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Year</th>
+                        <th scope="col">Price</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var car in Model)
+                    {
+                        <tr>
+                            <th scope="row">@car.Id</th>
+                            <td>@car.Manufacturer</td>
+                            <td>@car.Color</td>
+                            <td>@car.CategoryName</td>
+                            <td>@car.Year</td>
+                            <td>@car.Price</td>
+                            <td>
+                                <div class="d-flex justify-content-evenly">
+                                    
+                                    <a asp-controller="Cart" asp-action="Remove" asp-route-id=@car.Id class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover me-2">
+                                       <i class="bi bi-trash"></i>
+                                    </a>
+                                    
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>  
+            </table>
+            <p>Total: @Model.Sum(p=>p.Price) $</p>
+            <a asp-controller="Order" asp-action="Create" class="btn btn-primary">Confirm</a>
+        </div>
+
+    }
+    else
+    {
+        <h3>Products was not found in CART...</h3>
+    }
+
+</div>
