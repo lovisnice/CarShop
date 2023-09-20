@@ -6,6 +6,7 @@ using CarShop.Helper;
 using DataAccsess.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using System.Text.Json;
 
@@ -15,9 +16,11 @@ namespace CarShop.Controllers
     public class OrderController : Controller
     {
         private readonly IOrdersServices _ordersService;
-        public OrderController(IOrdersServices ordersService)
+        private readonly IMailService _mailService;
+        public OrderController(IOrdersServices ordersService,IMailService mailService)
         {
             _ordersService = ordersService;
+            _mailService = mailService;
         }
         public IActionResult Index()
         {

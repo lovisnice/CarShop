@@ -50,7 +50,10 @@
         {
             <tr>
                 <td>
-                    <img src="@(item.ImagePath??productImagePlaceholder)" class="card-img-top w-25" alt="...">
+                    @if (!string.IsNullOrEmpty(item.ImagePath))
+                    {
+                        <img src="~/@item.ImagePath" />
+                    }
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Manufacturer)

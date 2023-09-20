@@ -36,8 +36,6 @@ namespace BuisinessLogic.Services
 
         public void Creat(CreateCarDto productDto)
         {
-            //save image to server
-            string path = "/images";
             string imagePath = _fileService.SaveProductImage(productDto.Image).Result;
 
             Car product = new Car()
@@ -75,7 +73,7 @@ namespace BuisinessLogic.Services
             if (productOld != null)
             {
                 //save new file
-                _fileService.DeleteProductImage(productOld.ImagePath);
+                //_fileService.DeleteProductImage(productOld.ImagePath);
                 //save image to server
                 string imagePath = _fileService.UpdateProductImage(productDto.ImagePath, productDto.Image).Result;
                 productDto.ImagePath = imagePath;

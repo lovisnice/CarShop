@@ -35,18 +35,20 @@ namespace BuisinessLogic.Services
         public async Task<string> UpdateProductImage(string path, IFormFile file)
         {
             string root = _environment.WebRootPath;
-            string imagefullpath = Path.Combine(root, path);
+            string imagefullpath = Path.Combine(root, file.FileName);
             if (File.Exists(imagefullpath))
             {
                 File.Delete(imagefullpath);
             }
+
+            string imagePath = Path.Combine(imageFolder, file.FileName);
 
             using (FileStream filestream = new FileStream(imagefullpath, FileMode.Create))
             {
                 await file.CopyToAsync(filestream);
             }
 
-            return path;
+            return imagePath;
         }
 
         public async Task<string> SaveProductImage(IFormFile file)

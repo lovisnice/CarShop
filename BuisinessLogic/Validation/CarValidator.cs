@@ -1,9 +1,10 @@
-﻿using CarShop.Entities;
+﻿using BuisinessLogic.DTOs;
+using CarShop.Entities;
 using FluentValidation;
 
 namespace CarShop.Validation
 {
-    public class CarValidator:AbstractValidator<Car>
+    public class CarValidator:AbstractValidator<CarDto>
     {
         public CarValidator()
         {

@@ -54,6 +54,7 @@ builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<IOrdersServices, OrdersService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IFileService, FileService>();
+builder.Services.AddScoped<IMailService, MailService>();
 
 //builder.Services.AddScoped<IRepository<Product>, Repository<Product>>();
 //builder.Services.AddScoped<IRepository<Category>, Repository<Category>>();

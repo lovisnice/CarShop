@@ -11,6 +11,6 @@ namespace BuisinessLogic.Interfaces
     {
         IEnumerable<Order> GetAll(string userId);
         //Order GetById(int id, string userId);
-        void Create(string userId, List<int> idList);
+        Task Create(string userId, List<int> idList);
     }
 }

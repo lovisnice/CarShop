@@ -13,6 +13,8 @@ namespace BusinessLogic.Helpers
             //map Product=> ProductDto
             CreateMap<Car, CarDto>()
              .ForMember(productDto => productDto.CategoryName, opt => opt.MapFrom(product => product.Category.Name));
+
+            CreateMap<Category, CategoryDto>().ReverseMap();
             //map ProductDto=>Product
             CreateMap<CarDto, Car>();
 
